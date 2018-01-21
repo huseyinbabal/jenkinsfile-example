@@ -9,12 +9,6 @@ node {
         app = docker.build("huseyinbabal/jenkinsfile-example")
     }
 
-    stage('Test image') {
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
-    }
-
     stage('Push image') {
         docker.withRegistry('https://registry.hub.docker.com', 'hub') {
             app.push("${env.BUILD_NUMBER}")
